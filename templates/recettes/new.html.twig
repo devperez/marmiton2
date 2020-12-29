@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{% block title %}New Recettes
+{% endblock %}
+
+{% block body %}
+	<h1>Ajouter une recette</h1>
+
+	{{ include('recettes/_form.html.twig') }}
+
+
+	<a href="{{ path('recettes_index') }}">Revenir à la liste des recettes</a>
+{% endblock %}
