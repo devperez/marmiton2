@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Recettes index
+{% endblock %}
+
+{% block body %}
+	<div class="container-fluid">
+		<div style="padding-top:10px">
+			{{ form(form)}}
+			</div>
+			<div class=" row" style=" padding:10px; font-weight:bold; text-align:center">
+				<div class="col col-md-9">
+					<h1>Nos
+						{{recettes | length}}
+						Recettes
+					</h1>
+				</div>
+			</div>
+			<article>
+				{% for recette in recettes %}
+
+					<h2 style="padding:10px">{{ recette.nom }}</h2>
+					<div class="container">
+						<div class="row">
+							<div class="col">
+								{% for image in recette.images %}
+
+									<img src="{{ asset('/uploads/'~image.nom) }}" alt="Image" width="600" height="400">
+
+								{% endfor %}
+							</div>
+							<div class="col">
+
+								<p>Note :
+									{{ recette.note }}
+								</p>
+								<p>Catégorie :
+									{{ recette.categorie }}</p>
+								<div style:"height:150px; width:50px">{{ recette.ingredients }}</div>
+
+
+								<div style="padding-top:30px">
+									<button class="btn-primary">
+										<a href="{{ path('recettes_show', {'id': recette.id}) }}" style="color:white">Voir</a>
+									</button>
+									{% if app.user %}
+										<button class="btn-primary">
+											<a href="{{ path('recettes_edit', {'id': recette.id}) }}" style="color:white">Modifier</a>
+										</button>
+									{% endif %}
+								</div>
+							</div>
+						</div>
+					</div>
+				{% else %}
+
+					<p>
+						no records found</p>
+
+				{% endfor %}
+
+
+				<article>
+
+
+				{% endblock %}
