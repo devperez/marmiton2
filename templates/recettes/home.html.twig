@@ -3,10 +3,30 @@
 {% block body %}
 
 	<h1>
-		Bienvenue sur Marmytho' !</h1>
+		Découvrez une nouvelle recette !</h1>
 
 
-	<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita officia id minima nihil, libero laboriosam obcaecati ipsam, nostrum, natus odio laborum ratione non incidunt aspernatur nam corrupti praesentium eveniet dolore. Distinctio vitae sint adipisci, itaque deserunt doloremque libero rerum odio, impedit sequi ea fugit aliquid praesentium quidem, neque omnis! Sapiente?</p>
-	<p>Consectetur dolor rerum temporibus distinctio, cum aliquam quam, aliquid repellendus vel iste quas repellat laborum laudantium recusandae, veniam maiores optio! Dolor eos corporis placeat quisquam, incidunt est necessitatibus dignissimos quaerat distinctio. Nisi, porro possimus? Et deleniti repudiandae explicabo tempora placeat fuga doloremque sequi laudantium assumenda soluta! Tempora ullam magni dignissimos.</p>
+	<h2 style="padding:10px">{{ recette.nom }}</h2>
 
-{% endblock %}
+	<div class="container">
+		<div class="row">
+			<div class="col">
+				{% for image in recette.images %}
+
+					<img src="{{ asset('/uploads/'~image.nom) }}" alt="Image" width="600" height="400">
+
+				{% endfor %}
+				<div class="row" style="padding:20px">
+					<div class="col col-md-3">
+						<h2>Ingrédients</h2>
+						{{ recette.ingredients }}
+					</div>
+
+					<div class="col col-md-9">
+						<h2>Préparation</h2>
+						{{ recette.preparation }}
+					</div>
+				</div>
+
+
+			{% endblock %}

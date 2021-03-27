@@ -20,17 +20,19 @@ use Symfony\Component\Routing\Annotation\Route;
 class RecettesController extends AbstractController
 {
     /**
-     * @Route("/search/index", name="recettes_index", methods={"GET", "POST"})
+     * @Route("/index", name="recettes_index", methods={"GET", "POST"})
      */
     public function index(RecettesRepository $recettesRepository, Request $request): Response
     {
-        $recettes = $recettesRepository->findAll();
+
+        $recettes = $recettesRepository->findAll(); //on affiche toutes les recettes
+
         $form = $this->createForm(SearchRecetteType::class);
 
         $search = $form->handleRequest(($request));
 
         if ($form->isSubmitted() && $form->isValid()) {
-            //On recherche les recettes correspondantes aux mots clés
+            //On recherche les recettes dont le titre correspond aux mots clés
             $recettes = $recettesRepository->search(
                 $search->get('mot')->getData()
             );
@@ -38,17 +40,21 @@ class RecettesController extends AbstractController
 
         return $this->render('recettes/index.html.twig', [
             'recettes' => $recettes,
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ]);
     }
 
     /**
      * @Route("/", name="home")
      */
-
-    public function home()
+    public function randomRecipe(RecettesRepository $recettesRepository)
     {
-        return $this->render('recettes/home.html.twig');
+        $recette = $recettesRepository->findOneById(rand(5, 14));
+
+
+        return $this->render('recettes/home.html.twig', [
+            'recette' => $recette
+        ]);
     }
 
 

@@ -18,6 +18,7 @@ class RecettesRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Recettes::class);
     }
+
     /**
      * Recherche les recettes en fonction du formulaire
      * @return void
@@ -32,10 +33,13 @@ class RecettesRepository extends ServiceEntityRepository
         return $query->getQuery()->getResult();
     }
 
-    // /**
-    //  * @return Recettes[] Returns an array of Recettes objects
-    //  */
+
+    //    /**
+    //     * @return Recettes[] Returns an array of Recettes objects
+    //     */
+
     /*
+    
     public function findByExampleField($value)
     {
         return $this->createQueryBuilder('r')
@@ -56,8 +60,7 @@ class RecettesRepository extends ServiceEntityRepository
             ->andWhere('r.exampleField = :val')
             ->setParameter('val', $value)
             ->getQuery()
-            ->getOneOrNullResult()
-        ;
+            ->getOneOrNullResult();
     }
-    */
+*/
 }

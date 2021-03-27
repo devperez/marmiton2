@@ -21,7 +21,10 @@ class SearchRecetteType extends AbstractType
                 ]
             ])
             ->add('Rechercher', SubmitType::class, [
-                'attr' => ['class' => 'btn btn-primary'],
+                'attr' => [
+                    'style' => 'margin: 10px 970px',
+                    'class' => 'btn btn-primary'
+                ],
             ]);
     }
 
